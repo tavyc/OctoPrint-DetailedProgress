@@ -1,5 +1,6 @@
 # coding=utf-8
 from __future__ import absolute_import
+import re
 import time
 import socket
 
@@ -107,6 +108,7 @@ class DetailedProgressPlugin(octoprint.plugin.EventHandlerPlugin,
 			completion = currentData["progress"]["completion"],
 			printTimeLeft = currentData["progress"]["printTimeLeftString"],
 			ETA = currentData["progress"]["ETA"],
+			filename = re.sub(r"\.(g|gc|gco|gcod|gcode)$", "", currentData["job"]["file"]["name"], flags=re.I),
 			filepos = currentData["progress"]["filepos"],
 			accuracy = currentData["progress"]["accuracy"],
 		)
